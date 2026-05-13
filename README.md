@@ -82,15 +82,6 @@ tests/           # Pytest coverage for workflow behavior
 docs/            # Static demo page
 ```
 
-## 100T submission notes
-
-- Agent tool used most: **Hermes Agent**
-- Primary model series: **MiMo**
-- Category: agentic crypto due-diligence workflow
-- Proof: terminal demo log + GitHub repo + tests
-
-See [`SUBMISSION.md`](SUBMISSION.md) for copy-paste form answers.
-
 ## Safety
 
 This project is educational due diligence, not financial advice. It never asks for seed phrases, private keys, OTP, KYC documents, or wallet signatures. Use burner wallets for first interactions and verify official sources manually.
