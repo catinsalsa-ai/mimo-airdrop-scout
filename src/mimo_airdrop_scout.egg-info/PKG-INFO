@@ -1,0 +1,85 @@
+Metadata-Version: 2.4
+Name: mimo-airdrop-scout
+Version: 0.1.0
+Summary: Agentic airdrop/testnet due-diligence workflow built with Hermes Agent and MiMo-ready LLM hooks.
+Author-email: maulana <khasbimln@gmail.com>
+License: MIT
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: httpx>=0.27.0
+Dynamic: license-file
+
+# MiMo Airdrop Scout
+
+**MiMo Airdrop Scout** is a small agentic workflow for crypto users who need to quickly review a fresh airdrop/testnet opportunity before spending time, gas, or connecting a wallet.
+
+It was built with **Hermes Agent** as the operator/development agent and includes a **MiMo-ready model adapter** for Xiaomi MiMo / OpenAI-compatible endpoints. The default mode is deterministic so reviewers can run it without API keys; when `MIMO_API_KEY` + `MIMO_BASE_URL` are set, the reporter can be upgraded with real model reasoning.
+
+## What problem it solves
+
+Airdrop hunters often decide based on hype threads. This tool turns a project URL/name into a structured checklist:
+
+- scam and wallet-safety signals
+- task friction and gas risk
+- social / docs / funding signals
+- stale or ended campaign warnings
+- final verdict: `SKIP`, `WATCH`, or `PRIORITY`
+- Telegram-ready summary for quick sharing
+
+## Agent workflow
+
+The workflow is intentionally split into small agents:
+
+1. **Scout Agent** — normalizes the target and extracts basic signals.
+2. **Risk Agent** — scores wallet, token, website, and campaign red flags.
+3. **Strategy Agent** — estimates whether the opportunity is worth time/gas.
+4. **Reporter Agent** — turns the result into a compact operator-style report.
+
+This mirrors the way I use Hermes Agent in Telegram: scan → reason → summarize → act.
+
+## Quick start
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -e .
+airdrop-scout "Base Guild" --url https://guild.xyz/base --output reports/base-guild.md
+```
+
+No API key is required for the deterministic workflow.
+
+Optional MiMo-compatible env:
+
+```bash
+export MIMO_API_KEY="..."
+export MIMO_BASE_URL="https://api.example.com/v1"
+export MIMO_MODEL="mimo-v2.5-pro"
+```
+
+## Demo commands
+
+```bash
+python -m airdrop_scout.cli "Base Guild" --url https://guild.xyz/base
+python -m airdrop_scout.cli "Unknown Claim Portal" --url https://claim-free-airdrop.example --json
+pytest -q
+```
+
+## Example output
+
+See [`examples/base-guild-report.md`](examples/base-guild-report.md) and [`proof/terminal-demo.log`](proof/terminal-demo.log).
+
+## Submission notes for 100T form
+
+- Agent tool used most: **Hermes Agent**
+- Primary model series: **MiMo**
+- Project category: agentic crypto due-diligence workflow
+- Proof: terminal demo log + GitHub repo link / live docs page
+
+## Safety
+
+This project never asks for seed phrases, private keys, OTP, KYC documents, or wallet signatures. It is educational due diligence, not financial advice.
+
+## License
+
+MIT

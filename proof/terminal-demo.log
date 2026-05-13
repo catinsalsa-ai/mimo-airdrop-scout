@@ -1,0 +1,84 @@
+--- environment ---
+Python 3.11.15
+project: MiMo Airdrop Scout
+
+--- pytest ---
+..                                                                       [100%]
+2 passed in 0.04s
+
+--- demo markdown ---
+# Airdrop Scout Report: Base Guild
+
+Generated: `2026-05-13T00:16:24.238801+00:00`
+URL: https://guild.xyz/base
+
+## Verdict
+- Verdict: **PRIORITY**
+- Priority score: **70/100**
+- Risk: **LOW (10/100)**
+- Effort note: Do the lowest-risk official quests first.
+
+## Summary
+Base Guild: PRIORITY (70/100 priority, LOW risk 10/100). Do the lowest-risk official quests first. Main caution: No strong automated red flag detected.
+
+## Positive signals
+- Target contains ecosystem/testnet/dev tooling keywords worth checking.
+- Public URL provided: guild.xyz
+
+## Caution / red flags
+- No strong automated red flag detected.
+
+## Suggested actions
+- Verify official website from X/GitHub/docs, not from random referral threads.
+- Record task cost, gas chain, and required signatures before doing quests.
+- Re-run this scout after new funding/testnet/mainnet news appears.
+
+## Safety note
+Never share seed phrases/private keys/OTP/KYC documents. Use burner wallets for first interactions.
+
+
+--- risky json ---
+{
+  "target": {
+    "name": "Free Urgent Wallet Claim Airdrop",
+    "url": "http://claim-free-airdrop.example",
+    "notes": null
+  },
+  "signals": {
+    "normalized_name": "Free Urgent Wallet Claim Airdrop",
+    "url": "http://claim-free-airdrop.example",
+    "tags": [],
+    "positive_signals": [
+      "Public URL provided: claim-free-airdrop.example"
+    ],
+    "caution_signals": [
+      "Domain pattern looks generic or claim-oriented; verify official links manually."
+    ]
+  },
+  "risk": {
+    "score": 75,
+    "level": "HIGH",
+    "red_flags": [
+      "Domain pattern looks generic or claim-oriented; verify official links manually.",
+      "Multiple claim/hype keywords detected: airdrop, claim, free, urgent, wallet",
+      "URL is not HTTPS."
+    ],
+    "mitigations": [
+      "Use a fresh burner wallet for first interaction.",
+      "Check official X/Discord/GitHub/docs before connecting wallet.",
+      "Avoid signatures that request token approvals or unknown permissions."
+    ]
+  },
+  "strategy": {
+    "verdict": "SKIP",
+    "priority_score": 15,
+    "effort": "Not worth wallet/time risk right now.",
+    "suggested_actions": [
+      "Verify official website from X/GitHub/docs, not from random referral threads.",
+      "Record task cost, gas chain, and required signatures before doing quests.",
+      "Re-run this scout after new funding/testnet/mainnet news appears."
+    ]
+  },
+  "generated_at": "2026-05-13T00:16:24.340122+00:00",
+  "summary": "Free Urgent Wallet Claim Airdrop: SKIP (15/100 priority, HIGH risk 75/100). Not worth wallet/time risk right now. Main caution: Domain pattern looks generic or claim-oriented; verify official links manually."
+}
