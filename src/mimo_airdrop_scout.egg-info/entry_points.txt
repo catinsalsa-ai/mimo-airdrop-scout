@@ -1,2 +1,0 @@
-[console_scripts]
-airdrop-scout = airdrop_scout.cli:main

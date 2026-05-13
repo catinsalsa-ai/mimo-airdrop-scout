@@ -1,30 +1,29 @@
 # MiMo Airdrop Scout
 
-**MiMo Airdrop Scout** is a small agentic workflow for crypto users who need to quickly review a fresh airdrop/testnet opportunity before spending time, gas, or connecting a wallet.
+**MiMo Airdrop Scout** is a small, runnable agentic workflow for crypto users who want to review a fresh airdrop or testnet opportunity before spending time, gas, or connecting a wallet.
 
-It was built with **Hermes Agent** as the operator/development agent and includes a **MiMo-ready model adapter** for Xiaomi MiMo / OpenAI-compatible endpoints. The default mode is deterministic so reviewers can run it without API keys; when `MIMO_API_KEY` + `MIMO_BASE_URL` are set, the reporter can be upgraded with real model reasoning.
+It was built with **Hermes Agent** as the operator/development agent and includes a **MiMo-ready model adapter** for Xiaomi MiMo / OpenAI-compatible endpoints. The default mode is deterministic, so reviewers can run the project without API keys.
 
-## What problem it solves
+## Why this exists
 
-Airdrop hunters often decide based on hype threads. This tool turns a project URL/name into a structured checklist:
+Airdrop hunters often make decisions from hype threads, referral links, or incomplete alpha. This tool turns a project name/URL into a structured operator checklist:
 
-- scam and wallet-safety signals
+- wallet-safety and scam signals
 - task friction and gas risk
-- social / docs / funding signals
-- stale or ended campaign warnings
+- stale, ended, or claim-stage campaign warnings
 - final verdict: `SKIP`, `WATCH`, or `PRIORITY`
 - Telegram-ready summary for quick sharing
 
 ## Agent workflow
 
-The workflow is intentionally split into small agents:
+The workflow is split into four small agents:
 
-1. **Scout Agent** — normalizes the target and extracts basic signals.
+1. **Scout Agent** — normalizes the target and extracts early ecosystem/campaign signals.
 2. **Risk Agent** — scores wallet, token, website, and campaign red flags.
 3. **Strategy Agent** — estimates whether the opportunity is worth time/gas.
 4. **Reporter Agent** — turns the result into a compact operator-style report.
 
-This mirrors the way I use Hermes Agent in Telegram: scan → reason → summarize → act.
+This mirrors a real Hermes workflow: scan → reason → summarize → act.
 
 ## Quick start
 
@@ -37,7 +36,9 @@ airdrop-scout "Base Guild" --url https://guild.xyz/base --output reports/base-gu
 
 No API key is required for the deterministic workflow.
 
-Optional MiMo-compatible env:
+## Optional MiMo-compatible mode
+
+If you have a Xiaomi MiMo / OpenAI-compatible endpoint, copy `.env.example` and set:
 
 ```bash
 export MIMO_API_KEY="..."
@@ -45,28 +46,54 @@ export MIMO_BASE_URL="https://api.example.com/v1"
 export MIMO_MODEL="mimo-v2.5-pro"
 ```
 
+When configured, the Reporter Agent can use the model to generate a richer summary. If the model call fails, the CLI falls back to deterministic output.
+
 ## Demo commands
 
 ```bash
 python -m airdrop_scout.cli "Base Guild" --url https://guild.xyz/base
-python -m airdrop_scout.cli "Unknown Claim Portal" --url https://claim-free-airdrop.example --json
+python -m airdrop_scout.cli "Free Urgent Wallet Claim Airdrop" --url http://claim-free-airdrop.example --json
 pytest -q
 ```
 
 ## Example output
 
-See [`examples/base-guild-report.md`](examples/base-guild-report.md) and [`proof/terminal-demo.log`](proof/terminal-demo.log).
+```text
+Base Guild: PRIORITY (70/100 priority, LOW risk 10/100). Do the lowest-risk official quests first.
+```
 
-## Submission notes for 100T form
+See:
+
+- [`examples/base-guild-generated.md`](examples/base-guild-generated.md)
+- [`proof/terminal-demo.log`](proof/terminal-demo.log)
+- [`docs/index.html`](docs/index.html) for a lightweight demo/landing page
+
+## Project structure
+
+```text
+src/airdrop_scout/
+  agents.py      # Scout/Risk/Strategy/Reporter workflow
+  cli.py         # CLI entrypoint and Markdown/JSON output
+  llm.py         # Optional MiMo/OpenAI-compatible adapter
+  models.py      # Dataclasses for reports and scores
+examples/        # Generated reports
+proof/           # Terminal demo logs for challenge submission
+tests/           # Pytest coverage for workflow behavior
+docs/            # Static demo page
+```
+
+## 100T submission notes
 
 - Agent tool used most: **Hermes Agent**
 - Primary model series: **MiMo**
-- Project category: agentic crypto due-diligence workflow
-- Proof: terminal demo log + GitHub repo link / live docs page
+- Category: agentic crypto due-diligence workflow
+- Proof: terminal demo log + GitHub repo + tests
+
+See [`SUBMISSION.md`](SUBMISSION.md) for copy-paste form answers.
 
 ## Safety
 
-This project never asks for seed phrases, private keys, OTP, KYC documents, or wallet signatures. It is educational due diligence, not financial advice.
+This project is educational due diligence, not financial advice. It never asks for seed phrases, private keys, OTP, KYC documents, or wallet signatures. Use burner wallets for first interactions and verify official sources manually.
 
 ## License
 
